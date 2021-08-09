@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  pull-and-run:
+  install-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,3 +18,16 @@ jobs:
       - name: Install ROOT
         run: |
           sudo snap install root-framework
+
+      - name: Run ROOT
+        run: |
+          root --version
+
+      - name: Test compiling
+        run: |
+          make
+
+      - name: Run
+        run: |
+          ./analysis
+          ls -la
