@@ -1,0 +1,20 @@
+name: Test installing ROOT from Snap store
+
+# Controls when the action will run. 
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  pull-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install ROOT
+        run: |
+          sudo snap install root-framework
