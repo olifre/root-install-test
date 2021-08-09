@@ -1,4 +1,4 @@
-name: Test ROOT from Snap store
+name: Test ROOT from Snap store, run inside Snap
 
 # Controls when the action will run. 
 on:
@@ -29,9 +29,9 @@ jobs:
 
       - name: Test compiling
         run: |
-          echo "make; exit" | snap run --shell root-framework
+          echo "g++ -ggdb -Wl,--no-as-needed `root-config --libs --ldflags` `root-config --cflags` analysis.C -o analysis" | snap run --shell root-framework
 
       - name: Run
         run: |
-          ./analysis
+          echo "./analysis" | snap run --shell root-framework
           ls -la
