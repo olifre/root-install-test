@@ -1,4 +1,4 @@
-name: Test installing ROOT from Snap store
+name: Test ROOT from Snap store
 
 # Controls when the action will run. 
 on:
