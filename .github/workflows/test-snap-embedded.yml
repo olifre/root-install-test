@@ -29,7 +29,7 @@ jobs:
 
       - name: Test compiling
         run: |
-          echo "g++ -ggdb -Wl,--no-as-needed `root-config --libs --ldflags` `root-config --cflags` analysis.C -o analysis" | snap run --shell root-framework
+          echo "make" | snap run --shell root-framework
 
       - name: Run
         run: |
