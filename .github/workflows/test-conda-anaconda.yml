@@ -1,0 +1,49 @@
+name: Test ROOT via Conda using Anaconda
+
+# Controls when the action will run. 
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  install-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get -y install build-essential
+
+      - name: Setup Anaconda
+        run: |
+          wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh -O ~/anaconda.sh
+          bash anaconda.sh -b -p $HOME/anaconda
+      
+      - name: Create ROOT virtualenv
+        run: |
+          source $HOME/anaconda/etc/profile.d/conda.sh
+          conda create -n my_root_env root -c conda-forge
+
+      - name: Run ROOT
+        run: |
+          source $HOME/anaconda/etc/profile.d/conda.sh
+          conda activate my_root_env
+          root --version
+
+      - name: Test compiling
+        run: |
+          source $HOME/anaconda/etc/profile.d/conda.sh
+          conda activate my_root_env
+          make
+
+      - name: Run
+        run: |
+          source $HOME/anaconda/etc/profile.d/conda.sh
+          conda activate my_root_env
+          ./analysis
+          ls -la
