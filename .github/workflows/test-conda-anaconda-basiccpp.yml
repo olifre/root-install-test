@@ -1,0 +1,44 @@
+name: Test basic C++ via Conda using Anaconda
+
+# Controls when the action will run. 
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  install-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get -y install build-essential
+
+      - name: Setup Anaconda
+        run: |
+          wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh -O anaconda.sh
+          bash anaconda.sh -b -p ~/anaconda
+      
+      - name: Create ROOT virtualenv
+        run: |
+          source ~/anaconda/etc/profile.d/conda.sh
+          conda create -n my_root_env root -c conda-forge
+
+      - name: Upgrade all from conda-forge channel 
+        run: |
+          source ~/anaconda/etc/profile.d/conda.sh
+          conda activate my_root_env
+          conda upgrade -c conda-forge --all
+
+      - name: Compile basic C++ test program
+        run: |
+          source ~/anaconda/etc/profile.d/conda.sh
+          conda activate my_root_env
+          echo "#include <chrono>" > test.cpp
+          g++ -c -std=c++17 test.cpp
+          ls -la
