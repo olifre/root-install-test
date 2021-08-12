@@ -29,6 +29,12 @@ jobs:
           source ~/miniconda/etc/profile.d/conda.sh
           conda create -n my_root_env root -c conda-forge
 
+      - name: Upgrade all from conda-forge channel
+        run: |
+          source ~/miniconda/etc/profile.d/conda.sh
+          conda activate my_root_env
+          conda upgrade -c conda-forge --all
+
       - name: Run ROOT
         run: |
           source ~/miniconda/etc/profile.d/conda.sh
