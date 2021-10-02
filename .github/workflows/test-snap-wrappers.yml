@@ -1,0 +1,39 @@
+name: Test ROOT from Snap store with included wrappers
+
+# Controls when the action will run. 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron:  '0 0 1 * *'
+  workflow_dispatch:
+
+jobs:
+  install-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get -y install build-essential
+
+      - name: Install ROOT
+        run: |
+          sudo snap install root-framework
+
+      - name: Run ROOT
+        run: |
+          root --version
+
+      - name: Test compiling
+        run: |
+          root-framework.make
+
+      - name: Run
+        run: |
+          root-framework.run ./analysis
+          ls -la
