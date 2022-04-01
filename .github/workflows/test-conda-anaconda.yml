@@ -32,6 +32,12 @@ jobs:
           source ~/anaconda/etc/profile.d/conda.sh
           conda create -n my_root_env root -c conda-forge
 
+      - name: Upgrade conda itself
+        run: |
+          source ~/anaconda/etc/profile.d/conda.sh
+          conda activate my_root_env
+          conda update -n base -c defaults conda
+
       - name: Upgrade all from conda-forge channel 
         run: |
           source ~/anaconda/etc/profile.d/conda.sh
