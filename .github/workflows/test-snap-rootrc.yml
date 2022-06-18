@@ -1,0 +1,50 @@
+name: Test .rootrc configuration with ROOT from Snap store
+
+# Controls when the action will run. 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron:  '0 0 1 * *'
+  workflow_dispatch:
+
+jobs:
+  install-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get -y install build-essential
+
+      - name: Install ROOT
+        run: |
+          sudo snap install root-framework
+
+      - name: Run ROOT once (creates snap directories)
+        run: |
+          root --version
+
+      - name: Print env
+        run: |
+          root -e 'gEnv->Print()' -q
+
+      - name: Test config
+        run: |
+          root -e 'gEnv->GetValue("Browser.Name","")' -q -l | grep -q "ROOT::Experimental::RWebBrowserImp"
+
+      - name: Add .rootrc
+        run: |
+          echo "Browser.Name: TRootBrowser" >> ~/snap/root-framework/current/.rootrc
+
+      - name: Print env again
+        run: |
+          root -e 'gEnv->Print()' -q
+
+      - name: Test config again
+        run: |
+          root -e 'gEnv->GetValue("Browser.Name","")' -q -l | grep -q "TRootBrowser"
