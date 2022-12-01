@@ -17,3 +17,4 @@ jobs:
         with:
           committer_username: ${{ github.actor }}
           committer_email: ${{ github.actor }}@users.noreply.github.com
+          time_elapsed: 40
