@@ -23,10 +23,10 @@ jobs:
 
       - name: Setup Anaconda
         run: |
-          wget https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh -O anaconda.sh
+          wget https://repo.anaconda.com/archive/Anaconda3-2022.10-Linux-x86_64.sh -O anaconda.sh
           bash anaconda.sh -b -p ~/anaconda
           echo 'channel_priority: strict' > ~/.condarc
-      
+
       - name: Create ROOT virtualenv
         run: |
           source ~/anaconda/etc/profile.d/conda.sh
@@ -38,7 +38,7 @@ jobs:
           conda activate my_root_env
           conda update -n base -c defaults conda
 
-      - name: Upgrade all from conda-forge channel 
+      - name: Upgrade all from conda-forge channel
         run: |
           source ~/anaconda/etc/profile.d/conda.sh
           conda activate my_root_env
