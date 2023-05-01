@@ -30,7 +30,7 @@ jobs:
       - name: Create ROOT virtualenv
         run: |
           source ~/anaconda/etc/profile.d/conda.sh
-          conda create -n my_root_env root -c conda-forge
+          conda create -n my_root_env root root_base -c conda-forge
 
       - name: Upgrade conda itself
         run: |

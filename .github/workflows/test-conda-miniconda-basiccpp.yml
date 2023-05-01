@@ -27,11 +27,11 @@ jobs:
           bash miniconda.sh -b -p ~/miniconda
           # Channel priority should not be needed anymore with recent Conda.
           #echo 'channel_priority: strict' > ~/.condarc
-      
+
       - name: Create ROOT virtualenv
         run: |
           source ~/miniconda/etc/profile.d/conda.sh
-          conda create -n my_root_env root -c conda-forge
+          conda create -n my_root_env root root_base -c conda-forge
 
       - name: Upgrade conda itself
         run: |
