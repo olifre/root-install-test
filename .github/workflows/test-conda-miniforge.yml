@@ -25,12 +25,11 @@ jobs:
         run: |
           wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
           bash Miniforge3-$(uname)-$(uname -m).sh -b -p ~/miniforge
-          echo 'channel_priority: strict' > ~/.condarc
 
       - name: Create ROOT virtualenv
         run: |
           source ~/miniforge/etc/profile.d/conda.sh
-          conda create -n my_root_env root root_base -c conda-forge
+          conda create -n my_root_env root root_base
 
       - name: Upgrade conda itself
         run: |
@@ -42,7 +41,7 @@ jobs:
         run: |
           source ~/miniforge/etc/profile.d/conda.sh
           conda activate my_root_env
-          conda upgrade -c conda-forge --all
+          conda upgrade --all
 
       - name: Run ROOT
         run: |
