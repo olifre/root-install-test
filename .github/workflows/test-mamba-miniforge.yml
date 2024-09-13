@@ -34,7 +34,7 @@ jobs:
 
       - name: Upgrade all from conda-forge channel
         run: |
-          source ~/miniforge/etc/profile.d/conda.s
+          source ~/miniforge/etc/profile.d/conda.sh
           source ~/miniforge/etc/profile.d/mamba.sh
           mamba activate my_root_env
           mamba upgrade --all
