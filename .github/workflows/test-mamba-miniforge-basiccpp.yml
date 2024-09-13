@@ -1,0 +1,46 @@
+name: Test basic C++ via Mamba using Miniforge
+
+# Controls when the action will run. 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron:  '0 0 1 * *'
+  workflow_dispatch:
+
+jobs:
+  install-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get -y install build-essential
+
+      - name: Setup Miniforge
+        run: |
+          wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+          bash Miniforge3-$(uname)-$(uname -m).sh -b -p ~/miniforge
+
+      - name: Create ROOT virtualenv
+        run: |
+          source ~/miniforge/etc/profile.d/mamba.sh
+          mamba create -n my_root_env root root_base
+
+      - name: Upgrade all from conda-forge channel
+        run: |
+          source ~/miniforge/etc/profile.d/mamba.sh
+          mamba activate my_root_env
+          mamba upgrade --all
+
+      - name: Compile basic C++ test program
+        run: |
+          source ~/miniforge/etc/profile.d/mamba.sh
+          mamba activate my_root_env
+          echo "#include <chrono>" > test.cpp
+          g++ -c -std=c++17 test.cpp
+          ls -la
