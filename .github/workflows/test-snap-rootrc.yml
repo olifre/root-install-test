@@ -35,11 +35,11 @@ jobs:
 
       - name: Test config
         run: |
-          root -e 'gEnv->GetValue("Browser.Name","")' -q -l | grep -q "TRootBrowser"
+          root -e 'gEnv->GetValue("Browser.Name","")' -q -l | grep -q "ROOT::RWebBrowserImp"
 
       - name: Add .rootrc
         run: |
-          echo "Browser.Name: ROOT::Experimental::RWebBrowserImp" >> ~/snap/root-framework/current/.rootrc
+          echo "Browser.Name: TRootBrowser" >> ~/snap/root-framework/current/.rootrc
 
       - name: Print env again
         run: |
@@ -47,4 +47,4 @@ jobs:
 
       - name: Test config again
         run: |
-          root -e 'gEnv->GetValue("Browser.Name","")' -q -l | grep -q "ROOT::Experimental::RWebBrowserImp"
+          root -e 'gEnv->GetValue("Browser.Name","")' -q -l | grep -q "TRootBrowser"
