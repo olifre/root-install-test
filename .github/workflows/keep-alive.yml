@@ -15,4 +15,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: gautamkrishnar/keepalive-workflow@v2
         with:
+          workflow_files: "test-conda-anaconda-basiccpp.yml, test-conda-anaconda.yml, test-conda-miniconda-basiccpp.yml, test-conda-miniconda.yml, test-conda-miniforge-basiccpp.yml, test-conda-miniforge.yml, test-mamba-miniforge-basiccpp.yml, test-mamba-miniforge.yml, test-precompiled-tar.yml, test-snap-embedded.yml, test-snap-rootrc.yml, test-snap-wrappers.yml, test-snap.yml"
           time_elapsed: 40
