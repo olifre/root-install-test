@@ -34,6 +34,7 @@ jobs:
         run: |
           source ~/miniforge/etc/profile.d/conda.sh
           source ~/.bashrc
+          eval "$(mamba shell hook --shell bash)"
           #source ~/miniforge/etc/profile.d/mamba.sh
           mamba create -n my_root_env root root_base
 
@@ -41,6 +42,7 @@ jobs:
         run: |
           source ~/miniforge/etc/profile.d/conda.sh
           source ~/.bashrc
+          eval "$(mamba shell hook --shell bash)"
           #source ~/miniforge/etc/profile.d/mamba.sh
           mamba activate my_root_env
           mamba upgrade --all
@@ -49,6 +51,7 @@ jobs:
         run: |
           source ~/miniforge/etc/profile.d/conda.sh
           source ~/.bashrc
+          eval "$(mamba shell hook --shell bash)"
           #source ~/miniforge/etc/profile.d/mamba.sh
           mamba activate my_root_env
           echo "#include <chrono>" > test.cpp
