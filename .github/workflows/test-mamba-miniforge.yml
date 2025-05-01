@@ -32,12 +32,14 @@ jobs:
 
       - name: Create ROOT virtualenv
         run: |
+          source ~/.bashrc
           #source ~/miniforge/etc/profile.d/conda.sh
           #source ~/miniforge/etc/profile.d/mamba.sh
           mamba create -n my_root_env root root_base
 
       - name: Upgrade all from conda-forge channel
         run: |
+          source ~/.bashrc
           #source ~/miniforge/etc/profile.d/conda.sh
           #source ~/miniforge/etc/profile.d/mamba.sh
           mamba activate my_root_env
@@ -45,6 +47,7 @@ jobs:
 
       - name: Run ROOT
         run: |
+          source ~/.bashrc
           #source ~/miniforge/etc/profile.d/conda.sh
           #source ~/miniforge/etc/profile.d/mamba.sh
           mamba activate my_root_env
@@ -52,6 +55,7 @@ jobs:
 
       - name: Test compiling
         run: |
+          source ~/.bashrc
           #source ~/miniforge/etc/profile.d/conda.sh
           #source ~/miniforge/etc/profile.d/mamba.sh
           mamba activate my_root_env
@@ -59,6 +63,7 @@ jobs:
 
       - name: Run
         run: |
+          source ~/.bashrc
           #source ~/miniforge/etc/profile.d/conda.sh
           #source ~/miniforge/etc/profile.d/mamba.sh
           mamba activate my_root_env
