@@ -28,7 +28,7 @@ jobs:
 
       - name: Mess with shell profile
         run: |
-          source ~/miniforge/bin/mamba shell init
+          ~/miniforge/bin/mamba shell init
 
       - name: Create ROOT virtualenv
         run: |
