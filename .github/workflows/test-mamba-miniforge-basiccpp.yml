@@ -26,23 +26,27 @@ jobs:
           wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
           bash Miniforge3-$(uname)-$(uname -m).sh -b -p ~/miniforge
 
+      - name: Mess with shell profile
+        run: |
+          source ~/miniforge/bin/mamba shell init
+
       - name: Create ROOT virtualenv
         run: |
-          source ~/miniforge/etc/profile.d/conda.sh
-          source ~/miniforge/etc/profile.d/mamba.sh
+          #source ~/miniforge/etc/profile.d/conda.sh
+          #source ~/miniforge/etc/profile.d/mamba.sh
           mamba create -n my_root_env root root_base
 
       - name: Upgrade all from conda-forge channel
         run: |
-          source ~/miniforge/etc/profile.d/conda.sh
-          source ~/miniforge/etc/profile.d/mamba.sh
+          #source ~/miniforge/etc/profile.d/conda.sh
+          #source ~/miniforge/etc/profile.d/mamba.sh
           mamba activate my_root_env
           mamba upgrade --all
 
       - name: Compile basic C++ test program
         run: |
-          source ~/miniforge/etc/profile.d/conda.sh
-          source ~/miniforge/etc/profile.d/mamba.sh
+          #source ~/miniforge/etc/profile.d/conda.sh
+          #source ~/miniforge/etc/profile.d/mamba.sh
           mamba activate my_root_env
           echo "#include <chrono>" > test.cpp
           g++ -c -std=c++17 test.cpp
