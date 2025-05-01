@@ -38,14 +38,14 @@ jobs:
           #source ~/miniforge/etc/profile.d/mamba.sh
           mamba create -n my_root_env root root_base
 
-      - name: Upgrade all from conda-forge channel
+      - name: Update all from conda-forge channel
         run: |
           source ~/miniforge/etc/profile.d/conda.sh
           source ~/.bashrc
           eval "$(mamba shell hook --shell bash)"
           #source ~/miniforge/etc/profile.d/mamba.sh
           mamba activate my_root_env
-          mamba upgrade --all
+          mamba update --all
 
       - name: Run ROOT
         run: |
