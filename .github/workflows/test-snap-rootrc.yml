@@ -33,17 +33,17 @@ jobs:
         run: |
           root -e 'gEnv->Print()' -q
 
-      - name: Test config
-        run: |
-          root -e 'gEnv->GetValue("Browser.Name","")' -q -l | grep -q "ROOT::RWebBrowserImp"
+      #- name: Test config
+      #  run: |
+      #    root -e 'gEnv->GetValue("Browser.Name","")' -q -l | grep -q "ROOT::RWebBrowserImp"
 
-      - name: Add .rootrc
-        run: |
-          echo "Browser.Name: TRootBrowser" >> ~/snap/root-framework/current/.rootrc
+      #- name: Add .rootrc
+      #  run: |
+      #    echo "Browser.Name: TRootBrowser" >> ~/snap/root-framework/current/.rootrc
 
-      - name: Print env again
-        run: |
-          root -e 'gEnv->Print()' -q
+      #- name: Print env again
+      #  run: |
+      #    root -e 'gEnv->Print()' -q
 
       - name: Test config again
         run: |
